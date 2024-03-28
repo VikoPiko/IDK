@@ -4,6 +4,7 @@ using IDK;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IDK.Migrations
 {
     [DbContext(typeof(IDKContext))]
-    partial class IDKContextModelSnapshot : ModelSnapshot
+    [Migration("20240328174813_DesktopInitial")]
+    partial class DesktopInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,10 +76,6 @@ namespace IDK.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
@@ -87,16 +86,14 @@ namespace IDK.Migrations
                             Id = 1,
                             Address = "123JUMP-STREET",
                             Email = "testinshit@ridah.com",
-                            Name = "Viko",
-                            Password = "piko"
+                            Name = "Viko"
                         },
                         new
                         {
                             Id = 2,
                             Address = "325MainStreet",
                             Email = "AmbitionzAsARidah@2pac.com",
-                            Name = "Piko",
-                            Password = "Viko"
+                            Name = "Piko"
                         });
                 });
 
@@ -138,15 +135,6 @@ namespace IDK.Migrations
                             OrderFulfilled = new DateTime(2024, 3, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPlaced = new DateTime(2024, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TotalPrice = 299.99m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CustomerId = 2,
-                            IsComplete = false,
-                            OrderFulfilled = new DateTime(2024, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OrderPlaced = new DateTime(2024, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TotalPrice = 169.98m
                         });
                 });
 
@@ -182,13 +170,6 @@ namespace IDK.Migrations
                             OrderId = 1,
                             Price = 130.00m,
                             ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            OrderId = 2,
-                            Price = 269.98m,
-                            ProductId = 2
                         });
                 });
 

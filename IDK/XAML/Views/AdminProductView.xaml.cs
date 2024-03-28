@@ -20,7 +20,13 @@ namespace IDK.XAML.Views
             try
             {
                 //usually should close all running processes, but doesnt matter rn this is just for homework
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+
+                //Laptop Connection str;
+                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");*/
+
+                //Desktop Connection str;
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
                 " Integrated Security = True;TrustServerCertificate=True");
                 con.Open();
                 SqlCommand cmd = new SqlCommand("Select * from [Products]", con);
@@ -71,6 +77,30 @@ namespace IDK.XAML.Views
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+               " Integrated Security = True;TrustServerCertificate=True");
+            con.Open();
+
+            string productName = Product_Name.Text;
+            decimal productPrice = decimal.Parse(Product_Price.Text);
+
+            string query = "Insert into [Products] (Name, Price) values (@Name, @Price)";
+            SqlCommand cmd = new(query, con);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@Name", productName);
+            cmd.Parameters.AddWithValue("@Price", productPrice);
+            cmd.ExecuteScalar();
+
+            con.Close();
+        }
+
+        private void RemoveItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

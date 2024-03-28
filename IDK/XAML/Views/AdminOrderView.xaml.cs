@@ -21,7 +21,7 @@ namespace IDK.XAML.Views
             try
             {
                 //usually should close all running processes, but doesnt matter rn this is just for homework
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;"
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;"
                                                      + " Integrated Security = True;TrustServerCertificate=True");
                 con.Open();
                 SqlCommand cmd = new SqlCommand("Select * from [Orders]", con);
@@ -39,8 +39,10 @@ namespace IDK.XAML.Views
                         OrderPlaced = Convert.ToDateTime(dr[1].ToString()),
                         OrderFulfilled = Convert.ToDateTime(dr[2].ToString()),
                         CustomerId = 1,
-                        TotalPrice = Convert.ToDecimal(dr[6].ToString()),
-                        IsComplete = Convert.ToBoolean(dr[7].ToString())
+                        TotalPrice = Convert.ToDecimal(dr[4].ToString()),
+                        IsComplete = Convert.ToBoolean(dr[5].ToString())
+/*                        TotalPrice = Convert.ToDecimal(dr[6].ToString()),
+                        IsComplete = Convert.ToBoolean(dr[7].ToString())*/
                     });
                 }
                 OrdersList.ItemsSource = orders;

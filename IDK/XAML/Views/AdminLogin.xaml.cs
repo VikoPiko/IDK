@@ -32,7 +32,7 @@ namespace IDK.XAML.Views
             bool validUser = false;
             string usernameA = AdminUsername.Text;
             string passwordA = AdminPassword.Password;
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
                 " Integrated Security = True;TrustServerCertificate=True");
             try
             {

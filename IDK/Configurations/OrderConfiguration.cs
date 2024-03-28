@@ -18,7 +18,7 @@ namespace IDK.Configurations
 
         public List<Order> CreateOrders()
         {
-            List<Order> orders = new ()
+            List<Order> orders = new()
             {
                 new Order
                 {
@@ -28,6 +28,15 @@ namespace IDK.Configurations
                     CustomerId = 1,
                     TotalPrice = 299.99M,
                     IsComplete = true
+                },
+                new Order
+                {
+                    Id = 2,
+                    OrderPlaced = DateTime.Parse("2024-03-28"),
+                    OrderFulfilled = DateTime.Parse("2024-03-28"),
+                    CustomerId = 2,
+                    TotalPrice = 169.98M,
+                    IsComplete = false
                 }
             };
             return orders;

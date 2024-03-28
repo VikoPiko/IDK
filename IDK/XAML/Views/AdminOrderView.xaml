@@ -65,16 +65,21 @@
             <StackPanel Grid.Row="1">
                 <ListBox Name="OrdersList" HorizontalAlignment="Left"
                          VerticalAlignment="Center"
-                         Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
+                         Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=3}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Left">
+                                <TextBlock Text="ID-" Margin="3" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Id}" Margin="3"  FontWeight="Bold"/>
+                                <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding OrderPlaced}" Margin="3" FontWeight="Bold"/>
+                                <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding OrderFullfiled}" Margin="3" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding CustomerId}" Margin="3" FontWeight="Bold"/>
+                                <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding TotalPrice}" Margin="3" FontWeight="Bold"/>
+                                <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding IsComplete}" Margin="3" FontWeight="Bold"/>
                             </StackPanel>
                         </DataTemplate>

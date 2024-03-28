@@ -26,6 +26,13 @@ namespace IDK.Configurations
                     OrderId = 1,
                     ProductId = 1,
                     Price = 130.00M
+                },
+                new OrderProduct 
+                {
+                    Id=2,
+                    OrderId = 2,
+                    ProductId = 2,
+                    Price = 269.98M
                 }
             };
             return orderProducts;

@@ -11,10 +11,13 @@ namespace IDK
         public DbSet<Order> Orders { get; set; } = null!;
         public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
         public DbSet<Admin> Admins { get; set; } = null!;
-
+        //DESKTOP-HC94VC5\SQLEXPRESS01 desktop string;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+            //Laptop
+            /*optionsBuilder.UseSqlServer("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");*/
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
                 " Integrated Security = True;TrustServerCertificate=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

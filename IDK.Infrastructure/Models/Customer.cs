@@ -11,6 +11,8 @@ namespace IDK.Infrastructure.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
+        public string Password { get; set; } = null!;
         public string? Name { get; set; }
         public string? Address { get; set; }
         public string? Email { get; set; }

@@ -25,6 +25,7 @@ namespace IDK.Configurations
                 {
                     Id = 1,
                     Name = "Viko",
+                    Password = "piko",
                     Address = "123JUMP-STREET",
                     Email = "testinshit@ridah.com"
                 },
@@ -32,6 +33,7 @@ namespace IDK.Configurations
                 {
                     Id = 2,
                     Name = "Piko",
+                    Password = "Viko",
                     Address = "325MainStreet",
                     Email = "AmbitionzAsARidah@2pac.com"
                 }
