@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDK", "IDK\IDK.csproj", "{66032C00-330C-4F37-9206-F6823F547F67}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D63E5184-3448-472C-937D-F57145CCE4A0} = {D63E5184-3448-472C-937D-F57145CCE4A0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDK.Infrastructure", "IDK.Infrastructure\IDK.Infrastructure.csproj", "{D63E5184-3448-472C-937D-F57145CCE4A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66032C00-330C-4F37-9206-F6823F547F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66032C00-330C-4F37-9206-F6823F547F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66032C00-330C-4F37-9206-F6823F547F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66032C00-330C-4F37-9206-F6823F547F67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D63E5184-3448-472C-937D-F57145CCE4A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D63E5184-3448-472C-937D-F57145CCE4A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D63E5184-3448-472C-937D-F57145CCE4A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D63E5184-3448-472C-937D-F57145CCE4A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9042ED6D-55CF-4610-93F0-FAA451CDE859}
+	EndGlobalSection
+EndGlobal

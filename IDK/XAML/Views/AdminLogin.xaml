@@ -1,0 +1,190 @@
+﻿<Window x:Class="IDK.XAML.Views.AdminLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IDK.XAML.Views"
+        xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        Title="AdminLoginView" Height="550" Width="900">
+    <Border
+    BorderThickness="2"
+    CornerRadius="10">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#7161EF" Offset="0"/>
+                <GradientStop Color="#957FEF" Offset="0.5"/>
+                <GradientStop Color="#B79CED" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.1,0.7" EndPoint="1,0">
+                <GradientStop Color="#7161EF" Offset="0"/>
+                <GradientStop Color="#5F4B66" Offset="0.75"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="pnlControlBar"
+          Grid.Row="0"
+          Orientation="Horizontal"
+          FlowDirection="RightToLeft"
+          Background="Transparent"
+          Margin="0,0,5,0"
+          MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown">
+
+                <Button Name="btnClose"
+          Style="{StaticResource controlButton}"
+          Click="btnClose_Click">
+                    <fa:IconImage Icon="Xmark"
+                           Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+                <Button Name="btnMaximize"
+          Style="{StaticResource controlButton}"
+          Click="btnMaximize_Click">
+                    <fa:IconImage Icon="WindowMaximize"
+                           Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+                <Button Name="btnMinimize"
+          Style="{StaticResource controlButton}"
+          Click="btnMinimize_Click">
+                    <fa:IconImage Icon="WindowMinimize" 
+                    Width="12"
+                    Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Width="250"
+            Grid.Row="2"
+            Orientation="Vertical"
+            Margin="0,35,0,0">
+                <TextBlock Text="OrderVision"
+               FontSize="26"
+               FontWeight="Medium"
+               FontFamily="Montserrat"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               Margin="0 60 0 0"/>
+                <TextBlock Text="Admin"
+               FontSize="26"
+               FontWeight="Medium"
+               FontFamily="Montserrat"
+               Foreground="White"
+               HorizontalAlignment="Center"
+               Margin="0 0 0 0"/>
+                <TextBlock Text="Username"
+               Foreground="DarkGray"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Margin="0,60,0,0"
+               FontFamily="Montserrat"/>
+
+                <TextBox x:Name="AdminUsername"
+               FontSize="13"
+               FontWeight="Medium"
+               FontFamily="Montserrat"
+               Background="Transparent"
+               Foreground="White"
+               CaretBrush="LightGray"
+               BorderBrush="DarkGray"
+               BorderThickness="0,0,0,1"
+               Height="28"
+               VerticalContentAlignment="Center"
+               Margin="0,5,0,0"/>
+
+                <TextBlock Text="Password"
+               Foreground="DarkGray"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Margin="0,30,0,0"
+               FontFamily="Montserrat"/>
+                <PasswordBox x:Name="AdminPassword"
+               FontSize="13"
+               FontWeight="Medium"
+               FontFamily="Montserrat"
+               Background="Transparent"
+               Foreground="White"
+               CaretBrush="LightGray"
+               BorderBrush="DarkGray"
+               BorderThickness="0,0,0,1"
+               Height="28"
+               VerticalContentAlignment="Center"
+               Margin="0,5,0,0"/>
+                <Button x:Name="AdminLoginBtn"
+              BorderThickness="0"
+              Grid.Column="2"
+              Cursor="Hand"
+              Content="LOG IN"
+              IsDefault="True"
+              FontSize="16"
+              FontFamily="Montserrat"
+              Click="AdminLogin_Click"
+              Margin="0,30,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#D4D6B9"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#EDEEC0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="150" Height="40"
+                        CornerRadius="20"
+                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                        HorizontalAlignment="center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+                <Button x:Name="UserWindow"
+              BorderThickness="0"
+              Grid.Column="2"
+              Cursor="Hand"
+              Content="User"
+              IsDefault="True"
+              FontSize="16"
+              FontFamily="Montserrat"
+              Margin="0,40,0,0"
+              Click="UserWindow_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#DAD6B9"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#EDEEC0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="100" Height="40"
+            CornerRadius="20"
+            Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                          HorizontalAlignment="center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
