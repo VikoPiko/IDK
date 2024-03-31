@@ -63,8 +63,34 @@
 
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <ListBox Name="ProductsList" HorizontalAlignment="Left"
+                <TextBlock Text="Search"
+                           Foreground="white"
+                           FontFamily="Montserrat"
+                           FontWeight="Medium"
+                           HorizontalAlignment="Center"
+                           FontSize="14"/>
+                <TextBox Width="200"
+                         HorizontalAlignment="Center"
+                         Name="ProductSearchBar"
+                         Margin="-20 0 0 10"/>
+                <Button Width="18.5"
+                        Height="18.5"
+                        Name="ProductSearchBtn"
+                        Background="Gray"
+                        HorizontalAlignment="Center"
+                        Margin="210 -37 0 0"
+                        Click="ProductSearchBtn_Click">
+                    <fa:IconImage Icon="Search" Foreground="White"/>
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <ListBox Name="ProductsList" HorizontalAlignment="Center"
                          VerticalAlignment="Center"
+                         BorderThickness="0"
+                         Foreground="White"
                          Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=3}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -72,28 +98,37 @@
                                         Margin="5"
                                         HorizontalAlignment="Left">
                                 <TextBlock Text="{Binding Id}" Margin="2"  FontWeight="Bold"/>
+                                <TextBlock Text="/" Margin="2"  FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Name}" Margin="2" FontWeight="Bold"/>
+                                <TextBlock Text="/" Margin="2"  FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Price}" Margin="2" FontWeight="Bold"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
                     <TextBlock Text="Name"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                Width="50"
-                               Margin="10 0 0 0"/>
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               Margin="-130 0 0 0"/>
                     <TextBox Name="Product_Name"
-                             Width="120"/>
+                             Width="120"
+                             Margin="-150 0 0 0"/>
                     <TextBlock Text="Price"
+                               Foreground="White"
                                FontFamily="Montserrat"
                                FontWeight="Medium"
-                               Margin="10 0 0 0"
-                               Width="40"/>
+                               Margin="65 -50 0 0"
+                               Width="40"
+                               Height="15"/>
                     <TextBox x:Name="Product_Price"
-                             Width="50"/>
+                             Width="50"
+                             Height="17"
+                             Margin="65 -17 0 0"/>
                 </StackPanel>
                 
                 <Button x:Name="AddItem"
@@ -104,16 +139,17 @@
                         FontWeight="Medium"
                         FontFamily="Montserrat"
                         Click="AddItem_Click"
-                        HorizontalAlignment="Left"
-                        Margin="150 10 0 0"/>
+                        HorizontalAlignment="Center"
+                        Margin="-150 10 0 0"/>
                 <Button x:Name="RemoveItem"
                         Width="90"
                         Height="25"
                         Content="Remove Item"
                         FontSize="12"
+                        HorizontalAlignment="Center"
                         FontWeight="Medium"
                         FontFamily="Montserrat"
-                        Margin="-150 -24 0 0"
+                        Margin="100 -24 0 0"
                         Click="RemoveItem_Click"/>
             </StackPanel>
         </Grid>

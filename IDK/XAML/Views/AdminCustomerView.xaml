@@ -93,6 +93,7 @@
                 <ListBox  HorizontalAlignment="Center"
                           x:Name="CustomerList"
                           Margin="20"
+                          BorderThickness="0"
                           Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=3}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>

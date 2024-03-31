@@ -107,7 +107,7 @@ namespace IDK.XAML.Views
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@str", '%' + str + '%');
 
-            List<Customer> customers = new List<Customer>(); // Create a list to store customers
+            List<Customer> customers = new List<Customer>();
 
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
@@ -122,10 +122,8 @@ namespace IDK.XAML.Views
                             Email = Convert.ToString(reader["Email"]),
                             Address = Convert.ToString(reader["Address"])
                         };
-                        customers.Add(customer); // Add the customer to the list
+                        customers.Add(customer);
                     }
-
-                    // Display or use the customers list as needed
                     CustomerList.ItemsSource = customers;
                 }
                 else

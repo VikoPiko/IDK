@@ -1,6 +1,7 @@
 ﻿using IDK.Infrastructure.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -45,7 +46,7 @@ namespace IDK.XAML.Views
                         CustomerId = 1,
                         TotalPrice = Convert.ToDecimal(dr[4].ToString()),
                         IsComplete = Convert.ToBoolean(dr[5].ToString())
-/*                        TotalPrice = Convert.ToDecimal(dr[6].ToString()),
+ /*                        TotalPrice = Convert.ToDecimal(dr[6].ToString()),
                         IsComplete = Convert.ToBoolean(dr[7].ToString())*/
                     });
                 }

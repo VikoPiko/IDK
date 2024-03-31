@@ -63,9 +63,11 @@
 
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <ListBox Name="OrdersList" HorizontalAlignment="Left"
+                <ListBox Name="OrdersList" HorizontalAlignment="Center"
                          VerticalAlignment="Center"
-                         Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=3}">
+                         BorderThickness="0"
+                         Foreground="White"
+                         Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"

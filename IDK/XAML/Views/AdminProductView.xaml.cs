@@ -15,6 +15,7 @@ namespace IDK.XAML.Views
             InitializeComponent();
             FillProducts();
         }
+
         public void FillProducts()
         {
             try
@@ -98,13 +99,66 @@ namespace IDK.XAML.Views
             cmd.Parameters.AddWithValue("@Name", productName);
             cmd.Parameters.AddWithValue("@Price", productPrice);
             cmd.ExecuteScalar();
+            Product_Name.Text = "";
+            Product_Price.Text = "";
 
             con.Close();
         }
 
         private void RemoveItem_Click(object sender, RoutedEventArgs e)
         {
+            /*if (ProductsList.SelectedItem != null)
+            {
+                string name = null;
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                    " Integrated Security = True;TrustServerCertificate=True");
+                con.Open();
 
+                SqlCommand cmd = new SqlCommand("Delete from [Products] where Name = '@name'", con);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.ExecuteScalar();
+                ProductsList.SelectedItem = null;
+                con.Close();
+            }*/
+        }
+
+        private void ProductSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+             " Integrated Security = True;TrustServerCertificate=True");
+            con.Open();
+
+            string str = ProductSearchBar.Text;
+            string failed = "No Products to list";
+
+            SqlCommand cmd = new("Select * from [Products] where Name Like @str or Price Like @str", con);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@str", '%' + str + '%');
+            List<Product> products = new List<Product>();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if(reader.HasRows) 
+                {
+                    while(reader.Read()) 
+                    {
+                        Product product = new Product()
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Name = Convert.ToString(reader["Name"]),
+                            Price = Convert.ToDecimal(reader["Price"])
+                        };
+                        products.Add(product);
+                    }
+                    ProductsList.ItemsSource = products;
+                }
+                else
+                {
+                    MessageBox.Show(failed);
+                }
+                con.Close();
+            }
+            ProductSearchBar.Text = "";
         }
     }
 }
