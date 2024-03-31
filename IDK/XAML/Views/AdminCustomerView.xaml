@@ -4,9 +4,113 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IDK.XAML.Views"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        Background="Transparent"
         mc:Ignorable="d"
-        Title="AdminCustomerView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner"
+        Title="OrderVision" Height="450" Width="800">
+    <Border
+        BorderThickness="2"
+        CornerRadius="10">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#7161EF" Offset="0"/>
+                <GradientStop Color="#957FEF" Offset="0.5"/>
+                <GradientStop Color="#B79CED" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.1,0.7" EndPoint="1,0">
+                <GradientStop Color="#7161EF" Offset="0"/>
+                <GradientStop Color="#5F4B66" Offset="0.75"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel x:Name="pnlControlBar"
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft"
+                            Background="Transparent"
+                            Margin="0,0,5,0"
+                            MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown">
+
+                <Button Name="btnClose"
+                            Style="{StaticResource controlButton}"
+                            Click="btnClose_Click">
+                    <fa:IconImage Icon="Xmark"
+                                              Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+                <Button Name="btnMaximize"
+                            Style="{StaticResource controlButton}"
+                            Click="btnMaximize_Click">
+                    <fa:IconImage Icon="WindowMaximize"
+                                              Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+                <Button Name="btnMinimize"
+                            Style="{StaticResource controlButton}"
+                            Click="btnMinimize_Click">
+                    <fa:IconImage Icon="WindowMinimize"
+                                      Width="12"
+                                      Style="{StaticResource controlButtonIcon}"/>
+                </Button>
+
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                            Orientation="Vertical">
+                <TextBlock Text="Search"
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           Margin="5"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           Foreground="White"/>
+                <TextBox x:Name="SearchQueryBox" 
+                         Width="220"
+                         Height="20"/>
+                <Button Width="20"
+                        Height="20"
+                        Name="QueryBtn"
+                        HorizontalAlignment="Right"
+                        Margin="0 -20 265 0"
+                        Background="Gray"
+                        Click="QueryBtn_Click">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                    <fa:IconImage Icon="Search"
+                                  Foreground="White"/>
+                </Button>
+
+                <ListBox  HorizontalAlignment="Center"
+                          x:Name="CustomerList"
+                          Margin="20"
+                          Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=3}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="3">
+                                <TextBlock Text="{Binding Id}" FontWeight="Bold" Foreground="White" Margin="2"/>
+                                <TextBlock Text="/" FontWeight="Bold" Foreground="White" Margin="2"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="White" Margin="2"/>
+                                <TextBlock Text="/" FontWeight="Bold" Foreground="White" Margin="2"/>
+                                <TextBlock Text="{Binding Address}" FontWeight="Bold" Foreground="White" Margin="2"/>
+                                <TextBlock Text="/" FontWeight="Bold" Foreground="White" Margin="2"/>
+                                <TextBlock Text="{Binding Email}" FontWeight="Bold" Foreground="White" Margin="2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+                
+        </Grid>
+    </Border>
 </Window>

@@ -21,8 +21,12 @@ namespace IDK.XAML.Views
             try
             {
                 //usually should close all running processes, but doesnt matter rn this is just for homework
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;"
-                                                     + " Integrated Security = True;TrustServerCertificate=True");
+                //Desktop
+                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;"
+                                                     + " Integrated Security = True;TrustServerCertificate=True");*/
+                //Laptop
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
                 con.Open();
                 SqlCommand cmd = new SqlCommand("Select * from [Orders]", con);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);

@@ -22,12 +22,12 @@ namespace IDK.XAML.Views
                 //usually should close all running processes, but doesnt matter rn this is just for homework
 
                 //Laptop Connection str;
-                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");*/
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
 
                 //Desktop Connection str;
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");
+                /* SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                 " Integrated Security = True;TrustServerCertificate=True");*/
                 con.Open();
                 SqlCommand cmd = new SqlCommand("Select * from [Products]", con);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -81,8 +81,12 @@ namespace IDK.XAML.Views
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-               " Integrated Security = True;TrustServerCertificate=True");
+            //Dekstop
+            /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+               " Integrated Security = True;TrustServerCertificate=True");*/
+            //Laptop
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
             con.Open();
 
             string productName = Product_Name.Text;
