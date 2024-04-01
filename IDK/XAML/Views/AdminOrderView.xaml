@@ -63,30 +63,72 @@
 
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <ListBox Name="OrdersList" HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         BorderThickness="0"
-                         Foreground="White"
-                         Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal"
-                                        HorizontalAlignment="Left">
-                                <TextBlock Text="ID-" Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Id}" Margin="3"  FontWeight="Bold"/>
-                                <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding OrderPlaced}" Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding OrderFullfiled}" Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding CustomerId}" Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding TotalPrice}" Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding IsComplete}" Margin="3" FontWeight="Bold"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <TextBlock Text="All Order Information"
+                           Margin="0 0 0 10"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Foreground="#dbdbdb"
+                           FontFamily="Montserrat">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.5"
+                            BlurRadius="4"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <CheckBox IsChecked="False"
+                          Checked="IsOrderCompleteCheckBox_Checked"
+                          Unchecked="IsOrderCompleteCheckBox_Unchecked"
+                          Content="Complete"
+                          FontSize="12"
+                          FontWeight="Medium"
+                          Foreground="White"
+                          Name="IsOrderCompleteCheckBox"
+                          HorizontalAlignment="Right"
+                          Margin="0 0 80 0"/>
+
+                <CheckBox IsChecked="False"
+                          Checked="IsNotComplete_Checked"
+                          Unchecked="IsNotComplete_Unchecked"
+                          Content="Not Complete"
+                          FontSize="12"
+                          FontWeight="Medium"
+                          Foreground="White"
+                          Name="IsNotComplete"
+                          HorizontalAlignment="Right"
+                          Margin="0 -15 180 0"/>
+
+                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <ListBox Name="OrdersList" HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             BorderThickness="0"
+                             Foreground="White"
+                             Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                           HorizontalAlignment="Left">
+                                    <TextBlock Text="ID-" Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Id}" Margin="3"  FontWeight="Bold"/>
+                                    <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding OrderPlaced}" Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding OrderFullfiled}" Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding CustomerId}" Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding TotalPrice}" Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text=" / " Margin="3" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding IsComplete}" Margin="3" FontWeight="Bold"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
             </StackPanel>
         </Grid>
     </Border>

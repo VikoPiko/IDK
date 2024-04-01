@@ -105,7 +105,7 @@ namespace IDK.XAML.Views
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            if (Product_Name.Text != "" && Product_Price.Text != "")
+            if (Product_Name.Text != "" || Product_Price.Text != "")
             {
                 //Dekstop
                 SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +

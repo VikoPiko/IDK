@@ -84,5 +84,104 @@ namespace IDK.XAML.Views
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void IsOrderCompleteCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if(IsNotComplete.IsChecked == true)
+            {
+                IsNotComplete.IsChecked = false;
+            }
+            else if(IsNotComplete.IsChecked == false)
+            {
+                //Laptop
+                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                 " Integrated Security = True;TrustServerCertificate=True");*/
+
+                //Dekstop
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                   " Integrated Security = True;TrustServerCertificate=True");
+
+                con.Open();
+
+                SqlCommand cmd = new("Select * from [Orders] where IsComplete = 1", con);
+                cmd.CommandType = CommandType.Text;
+                List<Order> ordersChecked = new List<Order>();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Order order = new Order()
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                OrderPlaced = Convert.ToDateTime(reader["OrderPlaced"]),
+                                OrderFulfilled = Convert.ToDateTime(reader["OrderFulfilled"]),
+                                CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                                TotalPrice = Convert.ToDecimal(reader["TotalPrice"]),
+                                IsComplete = Convert.ToBoolean(reader["IsComplete"])
+                            };
+                            ordersChecked.Add(order);
+                        }
+                        OrdersList.ItemsSource = ordersChecked;
+                    }
+                    con.Close();
+                }
+            }
+        }
+        private void IsOrderCompleteCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            FillOrders();
+        }
+
+        private void IsNotComplete_Checked(object sender, RoutedEventArgs e)
+        {
+            if(IsOrderCompleteCheckBox.IsChecked == true) 
+            {
+                IsOrderCompleteCheckBox.IsChecked = false;
+            }
+            else if(IsOrderCompleteCheckBox.IsChecked == false)
+            {
+                //Laptop
+                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                 " Integrated Security = True;TrustServerCertificate=True");*/
+
+                //Dekstop
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                   " Integrated Security = True;TrustServerCertificate=True");
+
+                con.Open();
+
+                SqlCommand cmd = new("Select * from [Orders] where IsComplete = 0", con);
+                cmd.CommandType = CommandType.Text;
+                List<Order> ordersChecked = new List<Order>();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            Order order = new Order()
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                OrderPlaced = Convert.ToDateTime(reader["OrderPlaced"]),
+                                OrderFulfilled = Convert.ToDateTime(reader["OrderFulfilled"]),
+                                CustomerId = Convert.ToInt32(reader["CustomerId"]),
+                                TotalPrice = Convert.ToDecimal(reader["TotalPrice"]),
+                                IsComplete = Convert.ToBoolean(reader["IsComplete"])
+                            };
+                            ordersChecked.Add(order);
+                        }
+                        OrdersList.ItemsSource = ordersChecked;
+                    }
+                    con.Close();
+                }
+            }
+        }
+
+        private void IsNotComplete_Unchecked(object sender, RoutedEventArgs e)
+        {
+            FillOrders();
+        }
     }
 }

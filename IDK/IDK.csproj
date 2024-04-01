@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="XAML\ViewModels\**" />
+    <EmbeddedResource Remove="XAML\ViewModels\**" />
+    <None Remove="XAML\ViewModels\**" />
+    <Page Remove="XAML\ViewModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="XAML\Images\logo.png" />
   </ItemGroup>
 
@@ -35,10 +42,6 @@
 
   <ItemGroup>
     <Resource Include="XAML\Images\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="XAML\ViewModels\" />
   </ItemGroup>
 
 </Project>
