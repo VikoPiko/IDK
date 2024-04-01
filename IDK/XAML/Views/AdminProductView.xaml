@@ -10,6 +10,7 @@
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterOwner"
+        Name="ProductsUI"
         Title="OrderVision" Height="450" Width="800">
     <Border
         BorderThickness="2"
@@ -91,17 +92,19 @@
                          VerticalAlignment="Center"
                          BorderThickness="0"
                          Foreground="White"
-                         Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=3}">
+                         Background="Transparent"
+                         ItemsSource="{Binding Products}" 
+                         SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal"
                                         Margin="5"
                                         HorizontalAlignment="Left">
-                                <TextBlock Text="{Binding Id}" Margin="2"  FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="2"  FontWeight="Bold"/>
                                 <TextBlock Text="/" Margin="2"  FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Name}" Margin="2" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="2" FontWeight="Bold"/>
                                 <TextBlock Text="/" Margin="2"  FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Price}" Margin="2" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="2" FontWeight="Bold"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

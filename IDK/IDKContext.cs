@@ -15,11 +15,11 @@ namespace IDK
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Laptop
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");
-            //Desktop
-            /*optionsBuilder.UseSqlServer("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+            /*optionsBuilder.UseSqlServer("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
                 " Integrated Security = True;TrustServerCertificate=True");*/
+            //Desktop
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

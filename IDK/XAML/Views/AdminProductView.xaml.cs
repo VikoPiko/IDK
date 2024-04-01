@@ -1,6 +1,9 @@
 ﻿using IDK.Infrastructure.Models;
 using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -8,8 +11,28 @@ using System.Windows.Interop;
 
 namespace IDK.XAML.Views
 {
-    public partial class AdminProductView : Window
+    public partial class AdminProductView : Window, INotifyPropertyChanged
     {
+        private ObservableCollection<Product> _products = new();
+        private Product _selectedProduct;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public ObservableCollection<Product> Products
+        {
+            get { return _products; }
+            set { _products = value; OnPropertyChanged(); }
+        }
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set { _selectedProduct = value; OnPropertyChanged(); }
+        }
+
         public AdminProductView()
         {
             InitializeComponent();
@@ -23,19 +46,19 @@ namespace IDK.XAML.Views
                 //usually should close all running processes, but doesnt matter rn this is just for homework
 
                 //Laptop Connection str;
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");
+                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");*/
 
                 //Desktop Connection str;
-                /* SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-                 " Integrated Security = True;TrustServerCertificate=True");*/
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
                 con.Open();
                 SqlCommand cmd = new SqlCommand("Select * from [Products]", con);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds, "[Products]");
                 Product product = new Product();
-                IList<Product> products = new List<Product>();
+                IList<Product> products = new ObservableCollection<Product>();
 
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
@@ -82,51 +105,71 @@ namespace IDK.XAML.Views
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            //Dekstop
-            /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-               " Integrated Security = True;TrustServerCertificate=True");*/
-            //Laptop
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");
-            con.Open();
+            if (Product_Name.Text != "" && Product_Price.Text != "")
+            {
+                //Dekstop
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                   " Integrated Security = True;TrustServerCertificate=True");
+                //Laptop
+                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                    " Integrated Security = True;TrustServerCertificate=True");*/
+                con.Open();
 
-            string productName = Product_Name.Text;
-            decimal productPrice = decimal.Parse(Product_Price.Text);
+                string productName = Product_Name.Text;
+                decimal productPrice = decimal.Parse(Product_Price.Text);
 
-            string query = "Insert into [Products] (Name, Price) values (@Name, @Price)";
-            SqlCommand cmd = new(query, con);
-            cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@Name", productName);
-            cmd.Parameters.AddWithValue("@Price", productPrice);
-            cmd.ExecuteScalar();
-            Product_Name.Text = "";
-            Product_Price.Text = "";
+                string query = "Insert into [Products] (Name, Price) values (@Name, @Price)";
+                SqlCommand cmd = new(query, con);
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@Name", productName);
+                cmd.Parameters.AddWithValue("@Price", productPrice);
+                cmd.ExecuteScalar();
+                Product_Name.Text = "";
+                Product_Price.Text = "";
 
-            con.Close();
+                con.Close();
+                FillProducts();
+            }
+            else
+            {
+                string error = "Product is missing a Name/Price !";
+                MessageBox.Show(error);
+            }
         }
 
         private void RemoveItem_Click(object sender, RoutedEventArgs e)
         {
-            /*if (ProductsList.SelectedItem != null)
+            if (ProductsList.SelectedItem != null)
             {
-                string name = null;
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                    " Integrated Security = True;TrustServerCertificate=True");
+                string name = ((Product)ProductsList.SelectedItem).Name;
+
+                // Desktop
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                      " Integrated Security = True;TrustServerCertificate=True");
+
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("Delete from [Products] where Name = '@name'", con);
+                SqlCommand cmd = new SqlCommand("Delete from [Products] where Name = @name", con);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@name", name);
-                cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
                 ProductsList.SelectedItem = null;
                 con.Close();
-            }*/
+
+                FillProducts();
+            }
         }
 
         private void ProductSearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-             " Integrated Security = True;TrustServerCertificate=True");
+            //Laptop
+            /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+             " Integrated Security = True;TrustServerCertificate=True");*/
+
+            //Dekstop
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+               " Integrated Security = True;TrustServerCertificate=True");
+
             con.Open();
 
             string str = ProductSearchBar.Text;
