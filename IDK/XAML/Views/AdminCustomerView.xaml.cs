@@ -136,6 +136,7 @@ namespace IDK.XAML.Views
                 {
                     MessageBox.Show(failed);
                 }
+                SearchQueryBox.Text = "";
             }
             con.Close();
         }

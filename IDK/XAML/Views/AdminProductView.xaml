@@ -8,6 +8,7 @@
         Background="Transparent"
         mc:Ignorable="d"
         AllowsTransparency="True"
+        ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterOwner"
         Name="ProductsUI"
@@ -93,7 +94,7 @@
                          BorderThickness="0"
                          Foreground="White"
                          Background="Transparent"
-                         ItemsSource="{Binding Products}" 
+                         d:ItemsSource="{d:SampleData ItemCount=3}" 
                          SelectedItem="{Binding SelectedProduct, Mode=TwoWay}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -105,6 +106,8 @@
                                 <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="2" FontWeight="Bold"/>
                                 <TextBlock Text="/" Margin="2"  FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="2" FontWeight="Bold"/>
+                                <TextBlock Text="/" Margin="2"  FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="2" FontWeight="Bold"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -117,21 +120,32 @@
                                Width="50"
                                Foreground="White"
                                HorizontalAlignment="Center"
-                               Margin="-130 0 0 0"/>
+                               Margin="-200 0 0 0"/>
                     <TextBox Name="Product_Name"
                              Width="120"
-                             Margin="-150 0 0 0"/>
+                             Margin="-220 0 0 0"/>
                     <TextBlock Text="Price"
                                Foreground="White"
                                FontFamily="Montserrat"
                                FontWeight="Medium"
-                               Margin="65 -50 0 0"
+                               Margin="25 -50 0 0"
                                Width="40"
                                Height="15"/>
                     <TextBox x:Name="Product_Price"
                              Width="50"
                              Height="17"
-                             Margin="65 -17 0 0"/>
+                             Margin="25 -17 0 0"/>
+                    <TextBlock Text="Quantity"
+                               Foreground="White"
+                               FontFamily="Montserrat"
+                               FontWeight="Medium"
+                               Margin="175 -50 0 0"
+                               Width="55"
+                               Height="15"/>
+                    <TextBox x:Name="Product_Quantity"
+                             Width="50"
+                             Height="17"
+                             Margin="175 -17 0 0"/>
                 </StackPanel>
                 
                 <Button x:Name="AddItem"

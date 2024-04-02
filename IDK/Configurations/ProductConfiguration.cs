@@ -23,13 +23,15 @@ namespace IDK.Configurations
                 {
                     Id = 1,
                     Name = "Air Jordan 4",
-                    Price = 299.99M
+                    Price = 299.99M,
+                    Quantity = 10,
                 },
                 new Product 
                 {
                     Id= 2,
                     Name = "Air Max 90",
-                    Price = 130.00M
+                    Price = 130.00M,
+                    Quantity = 7
                 }
             };
             return products;

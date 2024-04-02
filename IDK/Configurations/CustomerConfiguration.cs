@@ -36,6 +36,14 @@ namespace IDK.Configurations
                     Password = "Viko",
                     Address = "325MainStreet",
                     Email = "AmbitionzAsARidah@2pac.com"
+                },
+                new Customer 
+                {
+                    Id = 3,
+                    Name = "viktor",
+                    Password = "pikolov",
+                    Address = "Ruse, Riga 26, Petar",
+                    Email = "viktor.vip@abv.bg"
                 }
             };
             return customers;

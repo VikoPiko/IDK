@@ -2,8 +2,6 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using CourseDB;
-using IDK;
 using Microsoft.Data.SqlClient;
 
 namespace IDK.XAML.Views;
@@ -21,11 +19,11 @@ public partial class CustomerLogin : Window
         string username = UsernameU.Text;
         string password = PasswordU.Password;
         //Desktop Login
-        /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-            " Integrated Security = True;TrustServerCertificate=True");*/
+        SqlConnection con = new ("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+            " Integrated Security = True;TrustServerCertificate=True");
         //Laptop login
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");
+        /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");*/
 
         try
         {
@@ -33,21 +31,21 @@ public partial class CustomerLogin : Window
             {
                 con.Open();
             }
-            string query = "Select * from [Users] where Username = @Username and Password = @Password";
-            SqlCommand sqlCommand = new SqlCommand(query, con);
+            string query = "Select count(1) from [Customers] where Username = @Username and Password = @Password";
+            SqlCommand sqlCommand = new (query, con);
             sqlCommand.CommandType = System.Data.CommandType.Text;
             sqlCommand.Parameters.AddWithValue("@Username", username);
             sqlCommand.Parameters.AddWithValue("@Password", password);
             validUser = sqlCommand.ExecuteScalar() == null ? false : true;
             if (validUser)
             {
-                MainWindow main = new MainWindow();
+                MainWindow main = new();
                 main.Show();
                 this.Close();
             }
             else
             {
-                Console.WriteLine("Invalid Login");
+                MessageBox.Show("Invalid Login");
             }
         }
         catch (Exception ex)
@@ -59,7 +57,7 @@ public partial class CustomerLogin : Window
 
     private void AdminWindow_Click(object sender, RoutedEventArgs e)
     {
-        AdminLogin adminLoginView = new AdminLogin();
+        AdminLogin adminLoginView = new ();
         adminLoginView.Show();
         this.Close();
     }
@@ -88,5 +86,43 @@ public partial class CustomerLogin : Window
     private void btnMinimize_Click(object sender, RoutedEventArgs e)
     {
         this.WindowState = WindowState.Minimized;
+    }
+
+    private void Customer_Login_Click(object sender, RoutedEventArgs e)
+    {
+        bool validUser = false;
+        string username = UsernameU.Text;
+        string password = PasswordU.Password;
+        //Desktop Login
+        SqlConnection con = new("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+            " Integrated Security = True;TrustServerCertificate=True");
+        //Laptop login
+        /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");*/
+
+        try
+        {
+            con.Open();
+            string query = "select count(1) from [Customers] where Name = @Username and Password = @Password";
+            SqlCommand cmd = new(query, con);
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.Parameters.AddWithValue("@Username", username);
+            cmd.Parameters.AddWithValue("@Password", password);
+            validUser = cmd.ExecuteScalar() == null ? false : true;
+            if(validUser)
+            {
+                MainWindow main = new ();
+                main.Show();
+                this.Close();
+            }
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
+        finally
+        {
+            con.Close();
+        }
     }
 }

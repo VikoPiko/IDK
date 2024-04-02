@@ -72,6 +72,11 @@ namespace IDK.XAML.Views
             }
         }
 
+        private void Inventory_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Orders_Click(object sender, RoutedEventArgs e)
         {
             if (!aowOpened)

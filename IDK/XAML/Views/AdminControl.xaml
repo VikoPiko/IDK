@@ -9,6 +9,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         WindowStyle="None"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="OrderVision" Height="450" Width="800">
 
@@ -111,11 +112,12 @@
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
                              Tag="white"
-                             Command="{Binding ShowTablesCommand}">
+                             Name="Inventory"
+                             Click="Inventory_Click">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="List"
+                        <fa:IconImage Icon="Book"
                                       Style="{StaticResource ResourceKey=menuButtonIcon}"/>
-                        <TextBlock Text="Tables"
+                        <TextBlock Text="Inventory"
                                    Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>

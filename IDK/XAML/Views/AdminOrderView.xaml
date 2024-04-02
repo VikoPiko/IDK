@@ -9,6 +9,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         WindowStyle="None"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="OrderVision" Height="450" Width="800">
     <Border

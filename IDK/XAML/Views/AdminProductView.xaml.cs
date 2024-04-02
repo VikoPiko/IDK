@@ -50,14 +50,14 @@ namespace IDK.XAML.Views
                 " Integrated Security = True;TrustServerCertificate=True");*/
 
                 //Desktop Connection str;
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                SqlConnection con = new ("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
                 " Integrated Security = True;TrustServerCertificate=True");
                 con.Open();
-                SqlCommand cmd = new SqlCommand("Select * from [Products]", con);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommand cmd = new ("Select * from [Products]", con);
+                SqlDataAdapter adapter = new (cmd);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds, "[Products]");
-                Product product = new Product();
+                Product product = new ();
                 IList<Product> products = new ObservableCollection<Product>();
 
                 foreach (DataRow dr in ds.Tables[0].Rows)
@@ -66,7 +66,8 @@ namespace IDK.XAML.Views
                     {
                         Id = Convert.ToInt32(dr[0].ToString()),
                         Name = dr[1].ToString(),
-                        Price = Convert.ToDecimal(dr[2].ToString())
+                        Price = Convert.ToDecimal(dr[2].ToString()),
+                        Quantity = Convert.ToInt32(dr[3].ToString())
                     });
                 }
                 ProductsList.ItemsSource = products;
@@ -77,6 +78,7 @@ namespace IDK.XAML.Views
                 Console.WriteLine(ex.ToString());
             }
         }
+
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -105,10 +107,10 @@ namespace IDK.XAML.Views
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            if (Product_Name.Text != "" || Product_Price.Text != "")
+            if (Product_Name.Text != "" && Product_Price.Text != "")
             {
                 //Dekstop
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                SqlConnection con = new ("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
                    " Integrated Security = True;TrustServerCertificate=True");
                 //Laptop
                 /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
@@ -117,15 +119,19 @@ namespace IDK.XAML.Views
 
                 string productName = Product_Name.Text;
                 decimal productPrice = decimal.Parse(Product_Price.Text);
+                int quantity = Convert.ToInt32(Product_Quantity.Text);
 
-                string query = "Insert into [Products] (Name, Price) values (@Name, @Price)";
+                string query = "Insert into [Products] (Name, Price, Quantity) values (@Name, @Price, @Quantity)";
                 SqlCommand cmd = new(query, con);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@Name", productName);
                 cmd.Parameters.AddWithValue("@Price", productPrice);
+                cmd.Parameters.AddWithValue("@Quantity", quantity);
                 cmd.ExecuteScalar();
+
                 Product_Name.Text = "";
                 Product_Price.Text = "";
+                Product_Quantity.Text = "";
 
                 con.Close();
                 FillProducts();
@@ -144,18 +150,18 @@ namespace IDK.XAML.Views
                 string name = ((Product)ProductsList.SelectedItem).Name;
 
                 // Desktop
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                SqlConnection con = new ("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
                       " Integrated Security = True;TrustServerCertificate=True");
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("Delete from [Products] where Name = @name", con);
+                SqlCommand cmd = new ("Delete from [Products] where Name = @name", con);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.ExecuteNonQuery();
                 ProductsList.SelectedItem = null;
-                con.Close();
 
+                con.Close();
                 FillProducts();
             }
         }
@@ -167,7 +173,7 @@ namespace IDK.XAML.Views
              " Integrated Security = True;TrustServerCertificate=True");*/
 
             //Dekstop
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+            SqlConnection con = new ("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
                " Integrated Security = True;TrustServerCertificate=True");
 
             con.Open();
@@ -178,18 +184,19 @@ namespace IDK.XAML.Views
             SqlCommand cmd = new("Select * from [Products] where Name Like @str or Price Like @str", con);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@str", '%' + str + '%');
-            List<Product> products = new List<Product>();
+            List<Product> products = new();
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 if(reader.HasRows) 
                 {
                     while(reader.Read()) 
                     {
-                        Product product = new Product()
+                        Product product = new()
                         {
                             Id = Convert.ToInt32(reader["Id"]),
                             Name = Convert.ToString(reader["Name"]),
-                            Price = Convert.ToDecimal(reader["Price"])
+                            Price = Convert.ToDecimal(reader["Price"]),
+                            Quantity = Convert.ToInt32(reader["Quantity"])
                         };
                         products.Add(product);
                     }

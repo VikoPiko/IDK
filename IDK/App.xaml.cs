@@ -1,5 +1,4 @@
-﻿using CourseDB;
-using IDK;
+﻿using IDK;
 using IDK.XAML.Views;
 using System.Windows;
 

@@ -51,6 +51,18 @@ namespace IDK.Infrastructure.Models
             }
         }
 
+        [Required]
+        private int _quantity;
+        public int Quantity
+        {
+            get { return _quantity; }
+            set
+            {
+                _quantity = value;
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string name = null)

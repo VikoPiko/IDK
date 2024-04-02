@@ -9,6 +9,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         WindowStyle="None"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="CustomerLogin" Height="550" Width="900">
     <Border
@@ -16,15 +17,17 @@
    CornerRadius="10">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#7161EF" Offset="0"/>
+                <GradientStop Color="#9395D3" Offset="0"/>
                 <GradientStop Color="#957FEF" Offset="0.5"/>
                 <GradientStop Color="#B79CED" Offset="1"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
         <Border.Background>
-            <LinearGradientBrush StartPoint="0.1,0.7" EndPoint="1,0">
-                <GradientStop Color="#7161EF" Offset="0"/>
-                <GradientStop Color="#5F4B66" Offset="0.75"/>
+            <LinearGradientBrush StartPoint="0.05,0.9" EndPoint="1,0">
+                <GradientStop Color="#5A5380" Offset="0"/>
+                <GradientStop Color="#9395D3" Offset="0.15"/>
+                <GradientStop Color="#A3A6E1" Offset="0.5"/>
+                <GradientStop Color="#5A5370" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
         <Grid>
@@ -72,9 +75,18 @@
               FontFamily="Montserrat"
               Foreground="White"
               HorizontalAlignment="Center"
-              Margin="0 80 0 0"/>
+              Margin="0 80 0 0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                            ShadowDepth="4"
+                            Direction="330"
+                            Color="Black"
+                            Opacity="0.5"
+                            BlurRadius="4"/>
+                    </TextBlock.Effect>
+                </TextBlock>
                 <TextBlock Text="Username"
-              Foreground="DarkGray"
+              Foreground="#110224"
               VerticalAlignment="Center"
               HorizontalAlignment="Left"
               Margin="0,60,0,0"
@@ -87,14 +99,14 @@
               Background="Transparent"
               Foreground="White"
               CaretBrush="LightGray"
-              BorderBrush="DarkGray"
+              BorderBrush="#110224"
               BorderThickness="0,0,0,1"
               Height="28"
               VerticalContentAlignment="Center"
               Margin="0,5,0,0"/>
 
                 <TextBlock Text="Password"
-              Foreground="DarkGray"
+              Foreground="#110224"
               VerticalAlignment="Center"
               HorizontalAlignment="Left"
               Margin="0,30,0,0"
@@ -106,27 +118,28 @@
               Background="Transparent"
               Foreground="White"
               CaretBrush="LightGray"
-              BorderBrush="DarkGray"
+              BorderBrush="#110224"
               BorderThickness="0,0,0,1"
               Height="28"
               VerticalContentAlignment="Center"
               Margin="0,5,0,0"/>
-                <Button x:Name="btnLogin"
-             BorderThickness="0"
-             Grid.Column="2"
-             Cursor="Hand"
-             Content="LOG IN"
-             IsDefault="True"
-             FontSize="16"
-             FontFamily="Montserrat"
-             Margin="0,30,0,0"
-             Click="btnLogin_Click">
+                <Button x:Name="Customer_Login"
+                        BorderThickness="0"
+                        Grid.Column="2"
+                        Cursor="Hand"
+                        Foreground="White"
+                        Content="LOG IN"
+                        IsDefault="True"
+                        FontSize="16"
+                        FontFamily="Montserrat"
+                        Margin="0,30,0,0"
+                        Click="Customer_Login_Click">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#DAD6B9"/>
+                            <Setter Property="Background" Value="#5A5370"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#EDEEC0"/>
+                                    <Setter Property="Background" Value="#110224"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -149,6 +162,7 @@
              Grid.Column="2"
              Cursor="Hand"
              Content="Admin"
+                        Foreground="White"
              IsDefault="True"
              FontSize="16"
              FontFamily="Montserrat"
@@ -156,10 +170,10 @@
              Click="AdminWindow_Click">
                     <Button.Style>
                         <Style TargetType="Button">
-                            <Setter Property="Background" Value="#DAD6B9"/>
+                            <Setter Property="Background" Value="#5A5370"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#EDEEC0"/>
+                                    <Setter Property="Background" Value="#110224"/>
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
