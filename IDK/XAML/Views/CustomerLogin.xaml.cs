@@ -13,48 +13,6 @@ public partial class CustomerLogin : Window
         InitializeComponent();
     }
 
-    private void btnLogin_Click(object sender, RoutedEventArgs e)
-    {
-        bool validUser = false;
-        string username = UsernameU.Text;
-        string password = PasswordU.Password;
-        //Desktop Login
-        SqlConnection con = new ("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-            " Integrated Security = True;TrustServerCertificate=True");
-        //Laptop login
-        /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");*/
-
-        try
-        {
-            if (con.State == System.Data.ConnectionState.Closed)
-            {
-                con.Open();
-            }
-            string query = "Select count(1) from [Customers] where Username = @Username and Password = @Password";
-            SqlCommand sqlCommand = new (query, con);
-            sqlCommand.CommandType = System.Data.CommandType.Text;
-            sqlCommand.Parameters.AddWithValue("@Username", username);
-            sqlCommand.Parameters.AddWithValue("@Password", password);
-            validUser = sqlCommand.ExecuteScalar() == null ? false : true;
-            if (validUser)
-            {
-                MainWindow main = new();
-                main.Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Invalid Login");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        finally { con.Close(); }
-    }
-
     private void AdminWindow_Click(object sender, RoutedEventArgs e)
     {
         AdminLogin adminLoginView = new ();
@@ -94,11 +52,11 @@ public partial class CustomerLogin : Window
         string username = UsernameU.Text;
         string password = PasswordU.Password;
         //Desktop Login
-        SqlConnection con = new("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-            " Integrated Security = True;TrustServerCertificate=True");
+        /*SqlConnection con = new("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+            " Integrated Security = True;TrustServerCertificate=True");*/
         //Laptop login
-        /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");*/
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
 
         try
         {

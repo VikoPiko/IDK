@@ -12,7 +12,8 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ItemsControl ItemsSource="{Binding UserProductList}">
+        <ItemsControl ItemsSource="{Binding UserProductList}"
+                      Name="UserProducts">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>

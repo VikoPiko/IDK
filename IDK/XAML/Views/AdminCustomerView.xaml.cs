@@ -36,11 +36,11 @@ namespace IDK.XAML.Views
             {
                 //usually should close all running processes, but doesnt matter rn this is just for homework
                 //Desktop
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;"
-                                                     + " Integrated Security = True;TrustServerCertificate=True");
+                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;"
+                                                     + " Integrated Security = True;TrustServerCertificate=True");*/
                 //Laptop
-                /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");*/
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
                 con.Open();
                 SqlCommand cmd = new SqlCommand("Select * from [Customers]", con);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -100,12 +100,12 @@ namespace IDK.XAML.Views
             string str = SearchQueryBox.Text;
             string failed = "No matching Records found";
             //Laptop
-            /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");*/
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
 
             //Dekstop
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-               " Integrated Security = True;TrustServerCertificate=True");
+            /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+               " Integrated Security = True;TrustServerCertificate=True");*/
 
             con.Open();
             SqlCommand cmd = new SqlCommand("Select * from [Customers] where Name Like @str or Id Like @str or " +

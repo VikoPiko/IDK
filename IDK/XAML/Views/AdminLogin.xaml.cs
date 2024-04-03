@@ -32,11 +32,11 @@ namespace IDK.XAML.Views
             string usernameA = AdminUsername.Text;
             string passwordA = AdminPassword.Password;
             // Desktop Login
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-                " Integrated Security = True;TrustServerCertificate=True");
-            //Laptop Login
-            /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+            /*SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
                 " Integrated Security = True;TrustServerCertificate=True");*/
+            //Laptop Login
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
             try
             {
                 if (con.State == System.Data.ConnectionState.Closed)

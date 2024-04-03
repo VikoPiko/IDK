@@ -38,8 +38,12 @@ namespace IDK.XAML.Views.CustomerViews
         {
             try
             {
-                using (SqlConnection con = new("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-                                               " Integrated Security = True;TrustServerCertificate=True"))
+                //Desktop
+                /*using (SqlConnection con = new("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+                                               " Integrated Security = True;TrustServerCertificate=True"))*/
+                //Laptop
+                SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                    " Integrated Security = True;TrustServerCertificate=True");
                 {
                     con.Open();
                     SqlCommand cmd = new("Select * from [Products]", con);
@@ -64,7 +68,7 @@ namespace IDK.XAML.Views.CustomerViews
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
 

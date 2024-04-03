@@ -20,9 +20,18 @@ namespace IDK.XAML.Views.CustomerViews
     /// </summary>
     public partial class UserAccountView : UserControl
     {
-        public UserAccountView()
+        private MainWindow mainWindow;
+
+        public UserAccountView(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
+        }
+        private void UserLogout_Click(object sender, RoutedEventArgs e)
+        {
+            AdminLogin cl = new ();
+            cl.Show();
+            mainWindow.Close();
         }
     }
 }

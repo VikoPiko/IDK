@@ -1,6 +1,7 @@
 ﻿using IDK.Infrastructure.Models;
 using IDK.XAML.Views.CustomerViews;
 using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -19,11 +20,16 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private CategoriesView _categoriesView;
     private UserAccountView _userAccountView;
     private MainProductsView _mainProductsView;
+
+    public Product? Product { get; set; }
+    public ObservableCollection<Product>? UserProductList { get; set; }
+
     public MainWindow()
     {
         InitializeComponent();
         DataContext = this;
         _mainProductsView = new MainProductsView();
+        UserProductList = new();
         CurrentChildView = _mainProductsView;
     }
 
@@ -82,7 +88,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         if(_userAccountView == null)
         {
-            _userAccountView = new UserAccountView();
+            _userAccountView = new UserAccountView(this);
         }
         CurrentChildView = _userAccountView;
     }
@@ -108,47 +114,46 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     }
     private void QueryBtn_Click(object sender, RoutedEventArgs e)
     {
-  /*      string str = CustomerSearchBar.Text;
-        string failed = "No matching Records found";
-        //Laptop
-        *//*SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
-            " Integrated Security = True;TrustServerCertificate=True");*//*
-
         //Dekstop
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
-           " Integrated Security = True;TrustServerCertificate=True");
+        /*SqlConnection con = new ("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+           " Integrated Security = True;TrustServerCertificate=True");*/
+        //Laptop
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+            " Integrated Security = True;TrustServerCertificate=True");
 
         con.Open();
-        SqlCommand cmd = new SqlCommand("Select * from [Customers] where Name Like @str or Id Like @str or " +
-            "Address Like @str or Email Like @str", con);
+
+        string str = CustomerSearchBar.Text;
+        string failed = "No Products to list";
+
+        SqlCommand cmd = new("Select * from [Products] where Name Like @str or Price Like @str", con);
         cmd.CommandType = CommandType.Text;
         cmd.Parameters.AddWithValue("@str", '%' + str + '%');
-
-        List<Customer> customers = new List<Customer>();
-
+        List<Product> products = new();
         using (SqlDataReader reader = cmd.ExecuteReader())
         {
             if (reader.HasRows)
             {
                 while (reader.Read())
                 {
-                    Customer customer = new Customer()
+                    Product product = new()
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Name = Convert.ToString(reader["Name"]),
-                        Email = Convert.ToString(reader["Email"]),
-                        Address = Convert.ToString(reader["Address"])
+                        Price = Convert.ToDecimal(reader["Price"]),
+                        Quantity = Convert.ToInt32(reader["Quantity"])
                     };
-                    customers.Add(customer);
+                    products.Add(product);
                 }
-                CustomerList.ItemsSource = customers;
+                _mainProductsView.UserProducts.ItemsSource = products;
             }
             else
             {
                 MessageBox.Show(failed);
             }
-            CustomerSearchBar.Text = "";
+            con.Close();
         }
-        con.Close();*/
+        CustomerSearchBar.Text = "";
+        CurrentChildView = _mainProductsView;
     }
 }

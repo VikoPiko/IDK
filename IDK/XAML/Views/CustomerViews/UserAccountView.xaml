@@ -4,9 +4,63 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IDK.XAML.Views.CustomerViews"
+             xmlns:fa ="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
-</UserControl>
+             Background="Transparent"
+             Height="450" Width="800">
+    <Border
+   BorderThickness="2"
+   CornerRadius="10">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#9395D3" Offset="0"/>
+                <GradientStop Color="#957FEF" Offset="0.5"/>
+                <GradientStop Color="#B79CED" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.05,0.9" EndPoint="1,0">
+                <GradientStop Color="#5A5380" Offset="0"/>
+                <GradientStop Color="#9395D3" Offset="0.15"/>
+                <GradientStop Color="#A3A6E1" Offset="0.5"/>
+                <GradientStop Color="#5A5370" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Button x:Name="UserLogout"
+         BorderThickness="0"
+         Grid.Column="2"
+         Cursor="Hand"
+         Foreground="White"
+         Content="LOG OUT"
+         IsDefault="True"
+         FontSize="16"
+         FontFamily="Montserrat"
+         Margin="0,30,0,0"
+         Click="UserLogout_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#5A5370"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#110224"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="150" Height="40"
+        CornerRadius="20"
+        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+        HorizontalAlignment="center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+
+        </Button>
+
+    </Border>
+    </UserControl>
