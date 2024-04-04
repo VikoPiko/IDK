@@ -12,7 +12,7 @@ namespace IDK
 {
     public class CartViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private ObservableCollection<Product> _cartProducts = new ();
         public ObservableCollection<Product> CartProducts

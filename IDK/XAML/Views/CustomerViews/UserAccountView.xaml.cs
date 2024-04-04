@@ -78,5 +78,29 @@ namespace IDK.XAML.Views.CustomerViews
                 con.Close();
             }
         }
+
+        private void ConfirmOrder_Click(object sender, RoutedEventArgs e)
+        {
+           /* Button clickedButton = sender as Button;
+            // Get the corresponding Product object bound to the clicked button
+            Product selectedProduct = clickedButton.DataContext as Product;
+            int productID = selectedProduct.Id;
+            //Laptop
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+             " Integrated Security = True;TrustServerCertificate=True");
+
+            //Dekstop
+            *//*SqlConnection con = new SqlConnection("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+               " Integrated Security = True;TrustServerCertificate=True");*//*
+            con.Open();
+
+            SqlCommand cmd = new("Delete from [Orders] where ProductId = @productID and userId = @userid", con);
+            cmd.Parameters.AddWithValue("@productID", productID);
+            cmd.Parameters.AddWithValue("@userid", userid);
+            cmd.ExecuteScalar();
+
+            con.Close();
+            FillCustomerOrders();*/
+        }
     }
 }

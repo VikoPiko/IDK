@@ -72,7 +72,7 @@ public partial class CustomerLogin : Window
             if(validUser)
             {
                 userId = Convert.ToInt32(cmd.ExecuteScalar() ?? -1);
-                MainWindow main = new (userId);
+                MainWindow main = new (userId, username);
                 main.Show();
                 Application.Current.Properties["UserID"] = userId;
                 this.Close();

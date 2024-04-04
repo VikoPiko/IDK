@@ -4,6 +4,7 @@ using IDK;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IDK.Migrations
 {
     [DbContext(typeof(IDKContext))]
-    partial class IDKContextModelSnapshot : ModelSnapshot
+    [Migration("20240404203125_cartadd")]
+    partial class cartadd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,26 +86,6 @@ namespace IDK.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Carts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Price = 299.99m,
-                            ProductId = 1,
-                            ProductName = "Air Jordan 4",
-                            Quantity = 1,
-                            userId = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Price = 299.99m,
-                            ProductId = 1,
-                            ProductName = "Air Jordan 4",
-                            Quantity = 2,
-                            userId = 1
-                        });
                 });
 
             modelBuilder.Entity("IDK.Infrastructure.Models.Customer", b =>

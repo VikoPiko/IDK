@@ -1,11 +1,11 @@
-﻿using IDK.Infrastructure.Models;
-using Microsoft.Data.SqlClient;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Controls;
+﻿    using IDK.Infrastructure.Models;
+    using Microsoft.Data.SqlClient;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Runtime.CompilerServices;
+    using System.Windows;
+    using System.Windows.Controls;
 
 namespace IDK.XAML.Views.CustomerViews
 {
@@ -16,6 +16,10 @@ namespace IDK.XAML.Views.CustomerViews
     {
         private decimal _totalPrice;
         CartViewModel _shoppingCartViewModel;
+        ShoppingCartView _shoppingCartView;
+
+        public ObservableCollection<Cart> Products { get; set; }
+
         int userid;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -24,7 +28,8 @@ namespace IDK.XAML.Views.CustomerViews
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public decimal TotalPrice {
+        public decimal TotalPrice
+        {
             get { return _totalPrice; }
             set
             {
@@ -41,6 +46,9 @@ namespace IDK.XAML.Views.CustomerViews
             InitializeComponent();
             UserProductList = new ObservableCollection<Product>();
             List<Product> productsInCart = new();
+            _shoppingCartViewModel = new CartViewModel();
+            _shoppingCartView = new ShoppingCartView(userID);
+            Products = new();
             DataContext = this;
             userid = userID;
             FillProducts();
@@ -91,6 +99,23 @@ namespace IDK.XAML.Views.CustomerViews
             _shoppingCartViewModel.AddToCart(selectedProduct);
             TotalPrice += selectedProduct.Price;
             MessageBox.Show($"Product: {selectedProduct.Name} was added to the cart.");
+            MessageBox.Show($"Product: ${TotalPrice}.");
+
+            //Dekstop
+            /*SqlConnection con = new ("Data Source=DESKTOP-HC94VC5\\SQLEXPRESS01; Initial Catalog = IDK;" +
+               " Integrated Security = True;TrustServerCertificate=True");*/
+            //Laptop
+            SqlConnection con = new SqlConnection("Data Source=DESKTOP-87GDKF5\\SQLEXPRESS; Initial Catalog = IDK;" +
+                " Integrated Security = True;TrustServerCertificate=True");
+            con.Open();
+            SqlCommand cmd = new("Insert into [Carts] (userId, ProductId, ProductName, Price, Quantity) values (@userid, @productid,@name, @price, @quantity)", con);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@userid", userid);
+            cmd.Parameters.AddWithValue("@productid", selectedProduct.Id);
+            cmd.Parameters.AddWithValue("@name", selectedProduct.Name);
+            cmd.Parameters.AddWithValue("@price", selectedProduct.Price);
+            cmd.Parameters.AddWithValue("@quantity", selectedProduct.Quantity);
+            cmd.ExecuteScalar();
         }
     }
 }

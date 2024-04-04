@@ -12,16 +12,62 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <ListBox ItemsSource="{Binding CartViewModel.CartProducts}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Name}" Margin="5"/>
-                        <TextBlock Text="{Binding Price}" Margin="5"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <StackPanel>
+            <Button
+         Name="RefreshLMAO"
+         Content="Refresh"
+         HorizontalAlignment="Center"
+         Margin="400 5 0 0"
+         FontSize="16"
+                FontWeight="Medium"
+                Foreground="White"
+         Click="RefreshLMAO_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#5A5370"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#110224"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
 
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="70" Height="30"
+                      CornerRadius="7"
+                      Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                    HorizontalAlignment="center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <ListBox Name="ShoppingCartList" 
+         HorizontalAlignment="Center"
+         VerticalAlignment="Center"
+         BorderThickness="0"
+         Margin="0 20 0 0"
+         Foreground="White"
+         Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left">
+                            <TextBlock Text="Id-" Margin="3" FontWeight="Bold" Foreground="Black"/>
+                            <TextBlock Text="{Binding Id}" Margin="3"  FontWeight="Bold" Foreground="Black"/>
+                            <TextBlock Text="Name-" Margin="3" FontWeight="Bold" Foreground="Black"/>
+                            <TextBlock Text="{Binding Name}" Margin="3"  FontWeight="Bold" Foreground="Black"/>
+                            <TextBlock Text="Price-" Margin="3" FontWeight="Bold" Foreground="Black"/>
+                            <TextBlock Text="{Binding Price}" Margin="3"  FontWeight="Bold" Foreground="Black"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </StackPanel>
+
+        
     </Grid>
 </UserControl>

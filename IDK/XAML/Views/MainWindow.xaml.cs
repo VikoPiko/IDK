@@ -17,19 +17,20 @@ namespace IDK.XAML.Views;
 public partial class MainWindow : Window, INotifyPropertyChanged
 {
     private ShoppingCartView _shoppingCartView;
-    private CategoriesView _categoriesView;
     private UserAccountView _userAccountView;
     private MainProductsView _mainProductsView;
     int UID;
+    public string UNAME {  get; set; }
 
     public Product? Product { get; set; }
     public ObservableCollection<Product>? UserProductList { get; set; }
 
-    public MainWindow(int userId)
+    public MainWindow(int userId, string username)
     {
         InitializeComponent();
         DataContext = this;
         UID = userId;
+        UNAME = username;
         _mainProductsView = new MainProductsView(userId);
         UserProductList = new();
         CurrentChildView = _mainProductsView;
@@ -68,20 +69,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         this.WindowState = WindowState.Minimized;
     }
 
-    private void Categories_Click(object sender, RoutedEventArgs e)
-    {
-        if(_categoriesView == null)
-        {
-            _categoriesView = new CategoriesView();
-        }
-        CurrentChildView = _categoriesView;
-    }
 
     private void Cart_Click(object sender, RoutedEventArgs e)
     {
         if(_shoppingCartView == null)
         {
-            _shoppingCartView = new ShoppingCartView();
+            _shoppingCartView = new ShoppingCartView(UID);
         }
         CurrentChildView = _shoppingCartView;
     }

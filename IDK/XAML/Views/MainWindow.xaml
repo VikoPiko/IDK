@@ -123,16 +123,6 @@
                             <fa:IconImage Icon="House"
                   Foreground="#110224"/>
                         </Button>
-                        <Button Width="25"
-                                Height="25"
-                                Margin="10 0 0 0"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Name="Categories"
-                                Click="Categories_Click">
-                            <fa:IconImage Icon="Bars"
-                                          Foreground="#110224"/>
-                        </Button>
 
                         <Button Width="25"
                                 Height="25"
@@ -144,7 +134,7 @@
                             <fa:IconImage Icon="CartShopping"
                                           Foreground="#110224"/>
                         </Button>
-                        <Button    Content="Viktor"
+                        <Button    Content="{Binding Path=UNAME}"
                                    FontSize="20"
                                    Background="Transparent"
                                    BorderThickness="0"

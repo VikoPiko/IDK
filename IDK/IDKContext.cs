@@ -11,6 +11,7 @@ namespace IDK
         public DbSet<Order> Orders { get; set; } = null!;
         public DbSet<OrderProduct> OrderProducts { get; set; } = null!;
         public DbSet<Admin> Admins { get; set; } = null!;
+        public DbSet<Cart> Carts { get; set; } = null!;
         //DESKTOP-HC94VC5\SQLEXPRESS01 desktop string;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +29,7 @@ namespace IDK
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new OrderProductConfiguration());
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
 
 
             base.OnModelCreating(modelBuilder);
