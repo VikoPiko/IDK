@@ -20,15 +20,17 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private CategoriesView _categoriesView;
     private UserAccountView _userAccountView;
     private MainProductsView _mainProductsView;
+    int UID;
 
     public Product? Product { get; set; }
     public ObservableCollection<Product>? UserProductList { get; set; }
 
-    public MainWindow()
+    public MainWindow(int userId)
     {
         InitializeComponent();
         DataContext = this;
-        _mainProductsView = new MainProductsView();
+        UID = userId;
+        _mainProductsView = new MainProductsView(userId);
         UserProductList = new();
         CurrentChildView = _mainProductsView;
     }
@@ -88,7 +90,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         if(_userAccountView == null)
         {
-            _userAccountView = new UserAccountView(this);
+            _userAccountView = new UserAccountView(this, UID);
         }
         CurrentChildView = _userAccountView;
     }
@@ -108,7 +110,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         if(_mainProductsView == null) 
         {
-            _mainProductsView = new MainProductsView();
+            _mainProductsView = new MainProductsView(UID);
         }
         CurrentChildView = _mainProductsView;
     }

@@ -77,6 +77,13 @@ namespace IDK.XAML.Views
 
         }
 
+        private void AdminLogout_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerLogin cl = new();
+            cl.Show();
+            this.Close();
+        }
+
         private void Orders_Click(object sender, RoutedEventArgs e)
         {
             if (!aowOpened)

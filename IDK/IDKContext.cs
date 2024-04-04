@@ -29,6 +29,7 @@ namespace IDK
             modelBuilder.ApplyConfiguration(new OrderProductConfiguration());
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
 
+
             base.OnModelCreating(modelBuilder);
         }
     }

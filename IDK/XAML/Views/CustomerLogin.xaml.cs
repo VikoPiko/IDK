@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using IDK.XAML.Views.CustomerViews;
 using Microsoft.Data.SqlClient;
 
 namespace IDK.XAML.Views;
@@ -48,6 +49,7 @@ public partial class CustomerLogin : Window
 
     private void Customer_Login_Click(object sender, RoutedEventArgs e)
     {
+        int userId = -1;
         bool validUser = false;
         string username = UsernameU.Text;
         string password = PasswordU.Password;
@@ -61,7 +63,7 @@ public partial class CustomerLogin : Window
         try
         {
             con.Open();
-            string query = "select count(1) from [Customers] where Name = @Username and Password = @Password";
+            string query = "select * from [Customers] where Name = @Username and Password = @Password";
             SqlCommand cmd = new(query, con);
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.Parameters.AddWithValue("@Username", username);
@@ -69,8 +71,10 @@ public partial class CustomerLogin : Window
             validUser = cmd.ExecuteScalar() == null ? false : true;
             if(validUser)
             {
-                MainWindow main = new ();
+                userId = Convert.ToInt32(cmd.ExecuteScalar() ?? -1);
+                MainWindow main = new (userId);
                 main.Show();
+                Application.Current.Properties["UserID"] = userId;
                 this.Close();
             }
         }

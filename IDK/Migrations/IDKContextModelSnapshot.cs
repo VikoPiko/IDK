@@ -44,7 +44,7 @@ namespace IDK.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
 
                     b.HasData(
                         new
@@ -79,7 +79,7 @@ namespace IDK.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
 
                     b.HasData(
                         new
@@ -135,7 +135,7 @@ namespace IDK.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
 
                     b.HasData(
                         new
@@ -253,7 +253,7 @@ namespace IDK.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderProducts");
+                    b.ToTable("OrderProducts", (string)null);
 
                     b.HasData(
                         new
@@ -292,7 +292,7 @@ namespace IDK.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new

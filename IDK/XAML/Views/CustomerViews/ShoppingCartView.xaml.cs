@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IDK.Infrastructure.Models;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace IDK.XAML.Views.CustomerViews
 {
     /// <summary>
@@ -20,9 +9,20 @@ namespace IDK.XAML.Views.CustomerViews
     /// </summary>
     public partial class ShoppingCartView : UserControl
     {
+        CartViewModel cartViewModel;
+        public ObservableCollection<Product> Products { get; set; }
+
+     
         public ShoppingCartView()
         {
             InitializeComponent();
+            Products = new ();
+            DataContext = this;
+        }
+
+        public void FillShoppingCart()
+        {
+            
         }
     }
 }

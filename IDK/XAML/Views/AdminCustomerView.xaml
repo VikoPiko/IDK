@@ -10,10 +10,10 @@
         AllowsTransparency="True"
         WindowStyle="None"
         WindowStartupLocation="CenterOwner"
-        Title="OrderVision" Height="450" Width="800">
+        Title="OrderVision" Height="550" Width="900">
     <Border
-        BorderThickness="2"
-        CornerRadius="10">
+ BorderThickness="2"
+ CornerRadius="10">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#7161EF" Offset="0"/>
@@ -22,9 +22,11 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
         <Border.Background>
-            <LinearGradientBrush StartPoint="0.1,0.7" EndPoint="1,0">
-                <GradientStop Color="#7161EF" Offset="0"/>
-                <GradientStop Color="#5F4B66" Offset="0.75"/>
+            <LinearGradientBrush StartPoint="0.05,0.9" EndPoint="1,0">
+                <GradientStop Color="#5A5370" Offset="0"/>
+                <GradientStop Color="#9395D3" Offset="0.15"/>
+                <GradientStop Color="#A3A6E1" Offset="0.5"/>
+                <GradientStop Color="#5A5370" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
         <Grid>

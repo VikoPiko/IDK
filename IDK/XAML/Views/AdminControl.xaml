@@ -11,7 +11,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="OrderVision" Height="450" Width="800">
+        Title="OrderVision" Height="550" Width="900">
 
     <Border
         BorderThickness="2"
@@ -24,9 +24,11 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
         <Border.Background>
-            <LinearGradientBrush StartPoint="0.1,0.7" EndPoint="1,0">
-                <GradientStop Color="#7161EF" Offset="0"/>
-                <GradientStop Color="#5F4B66" Offset="0.75"/>
+            <LinearGradientBrush StartPoint="0.05,0.9" EndPoint="1,0">
+                <GradientStop Color="#5A5380" Offset="0"/>
+                <GradientStop Color="#9395D3" Offset="0.15"/>
+                <GradientStop Color="#A3A6E1" Offset="0.5"/>
+                <GradientStop Color="#5A5370" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
         <Grid>
@@ -122,6 +124,40 @@
                     </StackPanel>
                 </RadioButton>
 
+                <Button x:Name="AdminLogout"
+                        BorderThickness="0"
+                        Grid.Column="2"
+                        Cursor="Hand"
+                        Foreground="White"
+                        Content="LOG OUT"
+                        IsDefault="True"
+                        FontSize="16"
+                        FontFamily="Montserrat"
+                        Margin="0,30,0,0"
+                        Click="AdminLogout_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#5A5370"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#110224"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="150" Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
             </StackPanel>
         </Grid>
     </Border>

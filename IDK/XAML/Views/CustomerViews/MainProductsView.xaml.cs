@@ -1,36 +1,48 @@
 ﻿using IDK.Infrastructure.Models;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace IDK.XAML.Views.CustomerViews
 {
     /// <summary>
     /// Interaction logic for MainProductsView.xaml
     /// </summary>
-    public partial class MainProductsView : UserControl
+    public partial class MainProductsView : UserControl, INotifyPropertyChanged
     {
+        private decimal _totalPrice;
+        CartViewModel _shoppingCartViewModel;
+        int userid;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public decimal TotalPrice {
+            get { return _totalPrice; }
+            set
+            {
+                _totalPrice = value;
+                OnPropertyChanged();
+            }
+        }
         public Product? Product { get; set; }
         public ObservableCollection<Product>? UserProductList { get; set; }
-        public MainProductsView()
+
+
+        public MainProductsView(int userID)
         {
             InitializeComponent();
             UserProductList = new ObservableCollection<Product>();
+            List<Product> productsInCart = new();
             DataContext = this;
+            userid = userID;
             FillProducts();
         }
 
@@ -68,10 +80,17 @@ namespace IDK.XAML.Views.CustomerViews
                 Console.WriteLine(ex.ToString());
             }
         }
-        
+
         private void AddToCart_Click(object sender, RoutedEventArgs e)
         {
 
+            Button clickedButton = sender as Button;
+            // Get the corresponding Product object bound to the clicked button
+            Product selectedProduct = clickedButton.DataContext as Product;
+            // Add selected product to the global list
+            _shoppingCartViewModel.AddToCart(selectedProduct);
+            TotalPrice += selectedProduct.Price;
+            MessageBox.Show($"Product: {selectedProduct.Name} was added to the cart.");
         }
     }
 }
